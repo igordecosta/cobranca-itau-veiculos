@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cobrança - Itaú Veículos</title>
+    <style>
+        /* Estilo geral */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Caixa do formulário */
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+            border-top: 5px solid #FF6200; /* Laranja do Itaú */
+        }
+
+        h1 {
+            color: #002776; /* Azul escuro do Itaú */
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #FF6200; /* Laranja do Itaú */
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #FF6200; /* Laranja do Itaú */
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #e55a00;
+        }
+
+        /* Estilo do link gerado */
+        #linkGerado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #linkGerado a {
+            display: block;
+            background: #002776; /* Azul escuro do Itaú */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        #linkGerado a:hover {
+            background: #001f5b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cobrança - Itaú Veículos</h1>
+        <h2>Gerador de Mensagem ao WhatsApp</h2>
+
+        <label>Celular do Cliente (com DDD, sem espaços ou "+"):</label>
+        <input type="text" id="numero" placeholder="Ex: 11987654321">
+
+        <label>Nome do Cliente:</label>
+        <input type="text" id="nome" placeholder="Ex: João Silva">
+
+        <label>Número da Parcela Vencida:</label>
+        <input type="text" id="parcela" placeholder="Ex: 3">
+
+        <label>Placa do Carro:</label>
+        <input type="text" id="placa" placeholder="Ex: ABC1D23">
+
+        <label>Nome do Analista:</label>
+        <input type="text" id="analista" placeholder="Ex: Maria Souza">
+
+        <button onclick="gerarLink()">Gerar Link</button>
+
+        <p id="linkGerado"></p>
+    </div>
+
+    <script>
+        function gerarLink() {
+            var numero = document.getElementById("numero").value;
+            var nome = document.getElementById("nome").value;
+            var parcela = document.getElementById("parcela").value;
+            var placa = document.getElementById("placa").value;
+            var analista = document.getElementById("analista").value;
+
+            if (!numero || !nome || !parcela || !placa || !analista) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            var mensagem = `_Olá, ${nome}. Tudo bem?_\n\nMeu nome é *${analista}*, sou do *Itaú Veículos* e estou aqui para te ajudar.\n\nPrimeiramente, quero te parabenizar pela compra do seu carro de placa *${placa}* e saber se recebeu seu carnê. Está tudo certinho?\n\nVi que está com a parcela *${parcela}* em atraso e ficamos preocupados. Já pedi a emissão do seu boleto digital para você, posso te mandar?\n\nEstou aqui para te ajudar ;)`;
+
+            var link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+            document.getElementById("linkGerado").innerHTML = `<a href="${link}" target="_blank">📩 Enviar no WhatsApp</a>`;
+        }
+    </script>
+</body>
+</html>
