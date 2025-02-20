@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cobrança - Itaú Veículos</title>
+    <title>Mensagem - Itaú Veículos</title>
     <style>
-        /* Estilo geral */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -13,7 +12,6 @@
             padding: 20px;
         }
 
-        /* Caixa do formulário */
         .container {
             background: white;
             padding: 20px;
@@ -21,17 +19,17 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             margin: auto;
-            border-top: 5px solid #FF6200; /* Laranja do Itaú */
+            border-top: 5px solid #FF6200;
         }
 
         h1 {
-            color: #002776; /* Azul escuro do Itaú */
+            color: #002776;
             font-size: 22px;
             margin-bottom: 5px;
         }
 
         h2 {
-            color: #FF6200; /* Laranja do Itaú */
+            color: #FF6200;
             font-size: 16px;
             margin-bottom: 20px;
         }
@@ -60,7 +58,7 @@
         }
 
         button {
-            background: #FF6200; /* Laranja do Itaú */
+            background: #FF6200;
             color: white;
             border: none;
             padding: 10px;
@@ -74,7 +72,6 @@
             background: #e55a00;
         }
 
-        /* Estilo do link gerado */
         #linkGerado {
             margin-top: 20px;
             font-weight: bold;
@@ -82,7 +79,7 @@
 
         #linkGerado a {
             display: block;
-            background: #002776; /* Azul escuro do Itaú */
+            background: #002776;
             color: white;
             padding: 10px;
             border-radius: 5px;
@@ -97,11 +94,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cobrança - Itaú Veículos</h1>
+        <h1>Mensagem - Itaú Veículos</h1>
         <h2>Gerador de Mensagem ao WhatsApp</h2>
 
         <form id="messageForm">
-            <label for="numero">Celular do Cliente (com DDD, sem espaços ou "+"):</label>
+            <label for="numero">Celular do Cliente (com DDD e somente o número):</label>
             <input type="text" id="numero" name="numero" placeholder="Ex: 11987654321" required>
 
             <label for="nome">Nome do Cliente:</label>
@@ -138,11 +135,12 @@
                 return;
             }
 
-            var mensagem = `Olá, ${nome}. Tudo bem?\n\n` +
-                           `Meu nome é ${analista}, sou do *Itaú Veículos* e estou aqui para te ajudar.\n\n` +
-                           `Primeiramente, quero te parabenizar pela compra do seu carro de placa ${placa} e saber se recebeu seu carnê. Está tudo certinho?\n\n` +
-                           `Vi que está com a parcela número ${parcela} em atraso e ficamos preocupados. *Regularize o pagamento das parcelas do seu financiamento o quanto antes*. E caso já tenha realizado o pagamento, pode desconsiderar essa mensagem.\n\n` +
-                           `Estou aqui para te ajudar ;)`;
+            var mensagem = `Olá, ${nome}! Tudo bem?\n\n` +
+                           `Me chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\n` +
+                           `Primeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\n` +
+                           `Notei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\n` +
+                           `Caso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\n` +
+                           `Qualquer dúvida, estou à disposição para te ajudar! 😉`;
 
             var link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
