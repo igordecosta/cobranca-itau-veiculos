@@ -8,11 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Impede a rolagem */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         .container {
@@ -23,6 +24,10 @@
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             border-top: 4px solid #ff6600;
+            position: fixed; /* Mantém o bloco fixo */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         h1 {
@@ -177,7 +182,7 @@
                 let parcela = document.getElementById("parcela1").value;
                 let placa = document.getElementById("placa1").value;
                 let analista = document.getElementById("analista1").value;
-                mensagem = `Olá, ${nome}! Tudo bem?\n\nMe chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\nPrimeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\nNotei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\nCaso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\nQualquer dúvida, estou por aqui!`;
+                mensagem = `Olá, ${nome}! Tudo bem?\n\nMe chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\nPrimeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\nNotei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\nCaso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\nQualquer dúvida, estou por aqui! 😉`;
             } else {
                 mensagem = `Olá, ${nome}!\n\nPercebi que não está disponível agora. Me chame quando tiver um tempinho por aí, tudo bem?`;
             }
@@ -204,4 +209,3 @@
 
 </body>
 </html>
-
