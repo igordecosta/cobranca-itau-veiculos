@@ -1,151 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cobrança - Itaú Veículos</title>
+    <title>Gerador de Mensagens</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .container {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: auto;
-            border-top: 5px solid #FF6200;
+            width: 350px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #ff6600;
         }
 
         h1 {
-            color: #002776;
-            font-size: 22px;
+            color: #ff6600;
+            font-size: 20px;
             margin-bottom: 5px;
         }
 
         h2 {
-            color: #FF6200;
             font-size: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #e55b00;
+        }
+
+        .input-container {
+            text-align: left;
+            margin-top: 10px;
         }
 
         label {
+            font-size: 12px;
             font-weight: bold;
+            color: #555;
             display: block;
-            margin-top: 10px;
-            text-align: left;
-            color: #333;
+            margin-bottom: 5px;
         }
 
         input {
             width: 100%;
             padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+            border: 2px solid #ff6600;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
         }
 
-        .buttons {
+        .button-group {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
-        button {
-            background: #FF6200;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 48%;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
+        .btn-gray {
+            background: #555;
         }
 
-        button:hover {
-            background: #e55a00;
-        }
-
-        #linkGerado {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        #linkGerado a {
-            display: block;
-            background: #002776;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        #linkGerado a:hover {
-            background: #001f5b;
+        .btn-gray:hover {
+            background: #333;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cobrança - Itaú Veículos</h1>
-        <h2>Gerador de Mensagem WhatsApp</h2>
 
-        <form id="messageForm">
-            <label for="numero">Celular do Cliente (com DDD e somente o número):</label>
-            <input type="text" id="numero" name="numero" placeholder="Ex: 11987654321" required>
+    <div class="container" id="app">
+        <div id="inicio">
+            <h1>Cobrança – Itaú Veículos</h1>
+            <h2>Gerador de Mensagem Whatsapp</h2>
+            <button class="btn" onclick="mostrarTela('mensagem1')">Mensagem 1 Primeiro Contato</button>
+            <button class="btn" onclick="mostrarTela('mensagem2')">Mensagem 2 Segundo Contato</button>
+        </div>
 
-            <label for="nome">Nome do Cliente:</label>
-            <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
-
-            <label for="parcela">Número da Parcela Vencida:</label>
-            <input type="text" id="parcela" name="parcela" placeholder="Ex: 3" required>
-
-            <label for="placa">Placa do Carro:</label>
-            <input type="text" id="placa" name="placa" placeholder="Ex: ABC1D23" required>
-
-            <label for="analista">Nome do Analista:</label>
-            <input type="text" id="analista" name="analista" placeholder="Ex: Maria Souza" required>
-
-            <div class="buttons">
-                <button type="button" onclick="gerarLink()">Gerar Link</button>
-                <button type="reset">Limpar Campos</button>
+        <div id="mensagem1" style="display: none;">
+            <h1>Cobrança – Itaú Veículos</h1>
+            <h2>Mensagem 1 Primeiro Contato</h2>
+            
+            <div class="input-container">
+                <label>Celular do Cliente</label>
+                <input type="text" id="celular1" placeholder="Ex: 11987654321">
             </div>
-        </form>
+            
+            <div class="input-container">
+                <label>Nome do Cliente</label>
+                <input type="text" id="nome1" placeholder="Ex: João Silva">
+            </div>
 
-        <p id="linkGerado"></p>
+            <div class="input-container">
+                <label>Número da Parcela Vencida</label>
+                <input type="text" id="parcela1" placeholder="Ex: 3">
+            </div>
+
+            <div class="input-container">
+                <label>Placa do Carro</label>
+                <input type="text" id="placa1" placeholder="Ex: ABC1D23">
+            </div>
+
+            <div class="input-container">
+                <label>Nome do Analista</label>
+                <input type="text" id="analista1" placeholder="Ex: Maria Souza">
+            </div>
+
+            <button class="btn" onclick="gerarLink(1)">Gerar Link</button>
+            
+            <div class="button-group">
+                <button class="btn btn-gray" onclick="limparCampos(1)">Limpar Campos</button>
+                <button class="btn btn-gray" onclick="mostrarTela('inicio')">Voltar</button>
+            </div>
+        </div>
+
+        <div id="mensagem2" style="display: none;">
+            <h1>Cobrança – Itaú Veículos</h1>
+            <h2>Mensagem 2 Segundo Contato</h2>
+
+            <div class="input-container">
+                <label>Celular do Cliente</label>
+                <input type="text" id="celular2" placeholder="Ex: 11987654321">
+            </div>
+            
+            <div class="input-container">
+                <label>Nome do Cliente</label>
+                <input type="text" id="nome2" placeholder="Ex: João Silva">
+            </div>
+
+            <button class="btn" onclick="gerarLink(2)">Gerar Link</button>
+            
+            <div class="button-group">
+                <button class="btn btn-gray" onclick="limparCampos(2)">Limpar Campos</button>
+                <button class="btn btn-gray" onclick="mostrarTela('inicio')">Voltar</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        function gerarLink() {
-            var numero = document.getElementById("numero").value.trim();
-            var nome = document.getElementById("nome").value.trim();
-            var parcela = document.getElementById("parcela").value.trim();
-            var placa = document.getElementById("placa").value.trim();
-            var analista = document.getElementById("analista").value.trim();
+        function mostrarTela(tela) {
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("mensagem1").style.display = "none";
+            document.getElementById("mensagem2").style.display = "none";
+            document.getElementById(tela).style.display = "block";
+        }
 
-            if (!numero || !nome || !parcela || !placa || !analista) {
-                alert("Por favor, preencha todos os campos.");
+        function gerarLink(tipo) {
+            let celular = document.getElementById(`celular${tipo}`).value;
+            let nome = document.getElementById(`nome${tipo}`).value;
+            let mensagem = "";
+
+            if (tipo === 1) {
+                let parcela = document.getElementById("parcela1").value;
+                let placa = document.getElementById("placa1").value;
+                let analista = document.getElementById("analista1").value;
+                mensagem = `Olá, ${nome}! Tudo bem?\n\nMe chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\nPrimeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\nNotei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\nCaso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\nQualquer dúvida, estou por aqui!`;
+            } else {
+                mensagem = `Olá, ${nome}!\n\nPercebi que não está disponível agora. Me chame quando tiver um tempinho por aí, tudo bem?`;
+            }
+
+            if (!celular || !nome) {
+                alert("Preencha todos os campos obrigatórios.");
                 return;
             }
 
-            var mensagem = `Olá, ${nome}! Tudo bem?\n\n` +
-                           `Me chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\n` +
-                           `Primeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\n` +
-                           `Notei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\n` +
-                           `Caso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\n` +
-                           `Qualquer dúvida, estou à disposição para te ajudar! 😉`;
+            let url = `https://wa.me/55${celular}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        }
 
-            var link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-
-            document.getElementById("linkGerado").innerHTML = `<a href="${link}" target="_blank">📩 Enviar no WhatsApp</a>`;
+        function limparCampos(tipo) {
+            document.getElementById(`celular${tipo}`).value = "";
+            document.getElementById(`nome${tipo}`).value = "";
+            if (tipo === 1) {
+                document.getElementById("parcela1").value = "";
+                document.getElementById("placa1").value = "";
+                document.getElementById("analista1").value = "";
+            }
         }
     </script>
+
 </body>
 </html>
+
