@@ -101,13 +101,63 @@
 <body>
 
     <div class="container" id="app">
-        <div id="inicio">
+        <!-- Tela inicial -->
+        <div id="telaInicial">
+            <h1>Itaú Veículos - Plataformas Remotas</h1>
+            <h2>Gerador de Mensagens Whatsapp</h2>
+            <button class="btn" onclick="mostrarTela('cobranca')">Cobrança</button>
+            <button class="btn" onclick="mostrarTela('boasVindas')">Boas-Vindas</button>
+        </div>
+
+        <!-- Tela de Cobrança -->
+        <div id="cobranca" style="display: none;">
             <h1>Cobrança – Itaú Veículos</h1>
             <h2>Gerador de Mensagem Whatsapp</h2>
             <button class="btn" onclick="mostrarTela('mensagem1')">Mensagem 1 Primeiro Contato</button>
             <button class="btn" onclick="mostrarTela('mensagem2')">Mensagem 2 Segundo Contato</button>
+            <button class="btn" onclick="mostrarTela('mensagem3')">Mensagem 3 Contato Lojista</button>
+            <button class="btn btn-gray" onclick="mostrarTela('telaInicial')">Voltar</button>
         </div>
 
+        <!-- Tela de Boas-Vindas -->
+        <div id="boasVindas" style="display: none;">
+            <h1>Itaú Veículos - Boas-Vindas</h1>
+            <h2>Mensagem de Boas-Vindas</h2>
+
+            <div class="input-container">
+                <label>Telefone celular do cliente</label>
+                <input type="text" id="celularBoasVindas" placeholder="Ex: 11987654321">
+            </div>
+
+            <div class="input-container">
+                <label>Nome do Cliente</label>
+                <input type="text" id="nomeClienteBoasVindas" placeholder="Ex: João Silva">
+            </div>
+
+            <div class="input-container">
+                <label>Nome do Analista</label>
+                <input type="text" id="analistaBoasVindas" placeholder="Ex: Maria Souza">
+            </div>
+
+            <div class="input-container">
+                <label>Nome da Loja</label>
+                <input type="text" id="lojaBoasVindas" placeholder="Ex: Loja ABC">
+            </div>
+
+            <div class="input-container">
+                <label>Nome do Carro</label>
+                <input type="text" id="carroBoasVindas" placeholder="Ex: Onix 2023">
+            </div>
+
+            <button class="btn" onclick="gerarLinkBoasVindas()">Gerar Link</button>
+
+            <div class="button-group">
+                <button class="btn btn-gray" onclick="limparCamposBoasVindas()">Limpar Campos</button>
+                <button class="btn btn-gray" onclick="mostrarTela('telaInicial')">Voltar</button>
+            </div>
+        </div>
+
+        <!-- Telas de Cobrança (Mensagens 1, 2 e 3) -->
         <div id="mensagem1" style="display: none;">
             <h1>Cobrança – Itaú Veículos</h1>
             <h2>Mensagem 1 Primeiro Contato</h2>
@@ -141,7 +191,7 @@
             
             <div class="button-group">
                 <button class="btn btn-gray" onclick="limparCampos(1)">Limpar Campos</button>
-                <button class="btn btn-gray" onclick="mostrarTela('inicio')">Voltar</button>
+                <button class="btn btn-gray" onclick="mostrarTela('cobranca')">Voltar</button>
             </div>
         </div>
 
@@ -163,34 +213,74 @@
             
             <div class="button-group">
                 <button class="btn btn-gray" onclick="limparCampos(2)">Limpar Campos</button>
-                <button class="btn btn-gray" onclick="mostrarTela('inicio')">Voltar</button>
+                <button class="btn btn-gray" onclick="mostrarTela('cobranca')">Voltar</button>
+            </div>
+        </div>
+
+        <div id="mensagem3" style="display: none;">
+            <h1>Cobrança – Itaú Veículos</h1>
+            <h2>Mensagem 3 Contato Lojista</h2>
+
+            <div class="input-container">
+                <label>Telefone celular do cliente</label>
+                <input type="text" id="celular3" placeholder="Ex: 11987654321">
+            </div>
+            
+            <div class="input-container">
+                <label>Nome do Lojista</label>
+                <input type="text" id="nomeLojista" placeholder="Ex: Loja ABC">
+            </div>
+
+            <div class="input-container">
+                <label>Dias em atraso</label>
+                <input type="text" id="diasAtraso" placeholder="Ex: 10">
+            </div>
+
+            <div class="input-container">
+                <label>Número da proposta</label>
+                <input type="text" id="numeroProposta" placeholder="Ex: 123456">
+            </div>
+
+            <button class="btn" onclick="gerarLink(3)">Gerar Link</button>
+            
+            <div class="button-group">
+                <button class="btn btn-gray" onclick="limparCampos(3)">Limpar Campos</button>
+                <button class="btn btn-gray" onclick="mostrarTela('cobranca')">Voltar</button>
             </div>
         </div>
     </div>
 
     <script>
         function mostrarTela(tela) {
-            document.getElementById("inicio").style.display = "none";
-            document.getElementById("mensagem1").style.display = "none";
-            document.getElementById("mensagem2").style.display = "none";
+            // Oculta todas as telas
+            document.querySelectorAll("#app > div").forEach(div => {
+                div.style.display = "none";
+            });
+            // Mostra a tela solicitada
             document.getElementById(tela).style.display = "block";
         }
 
         function gerarLink(tipo) {
             let celular = document.getElementById(`celular${tipo}`).value;
-            let nome = document.getElementById(`nome${tipo}`).value;
             let mensagem = "";
 
             if (tipo === 1) {
+                let nome = document.getElementById("nome1").value;
                 let parcela = document.getElementById("parcela1").value;
                 let placa = document.getElementById("placa1").value;
                 let analista = document.getElementById("analista1").value;
-                mensagem = `Olá, ${nome}! Tudo bem?\n\nMe chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\nPrimeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\nNotei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\nCaso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\nQualquer dúvida, estou por aqui! 😉`;
-            } else {
+                mensagem = `Olá, ${nome}! Tudo bem?\n\nMe chamo ${analista} e faço parte do *Itaú Veículos*. Estou aqui para te ajudar!\n\nPrimeiramente, parabéns pela compra do seu carro de placa ${placa}! Você recebeu seu carnê? Está tudo certinho?\n\nNotei que a parcela ${parcela} está em atraso e ficamos preocupados. Por isso, *recomendo que regularize o pagamento o quanto antes*. Você já fez o pagamento dessa parcela?\n\nCaso já tenha feito o pagamento, por favor, desconsidere esta mensagem.\n\nQualquer dúvida, estou por aqui.`;
+            } else if (tipo === 2) {
+                let nome = document.getElementById("nome2").value;
                 mensagem = `Olá, ${nome}!\n\nPercebi que não está disponível agora. Me chame quando tiver um tempinho por aí, tudo bem?`;
+            } else if (tipo === 3) {
+                let nomeLojista = document.getElementById("nomeLojista").value;
+                let diasAtraso = document.getElementById("diasAtraso").value;
+                let numeroProposta = document.getElementById("numeroProposta").value;
+                mensagem = `Olá, ${nomeLojista}! Como vai?\n\nVocê não vai acreditar. Estamos com um contrato a *${diasAtraso}* dias em atraso da sua loja.\n\nTer *clientes inadimplentes* que financiaram um veículo em sua loja pode *impactar a classificação da sua loja* e até mesmo *reduzir o crédito*. E não queremos que isso aconteça porque temos uma parceria muito incrível!\n\nA proposta do cliente inadimplente é *${numeroProposta}*.\n\n*Vamos juntos recuperar esse cliente?*\n\nConto com você.`;
             }
 
-            if (!celular || !nome) {
+            if (!celular || (tipo === 1 && !document.getElementById("nome1").value) || (tipo === 2 && !document.getElementById("nome2").value) || (tipo === 3 && (!document.getElementById("nomeLojista").value || !document.getElementById("diasAtraso").value || !document.getElementById("numeroProposta").value))) {
                 alert("Preencha todos os campos obrigatórios.");
                 return;
             }
@@ -199,14 +289,46 @@
             window.open(url, "_blank");
         }
 
+        function gerarLinkBoasVindas() {
+            let celular = document.getElementById("celularBoasVindas").value;
+            let nomeCliente = document.getElementById("nomeClienteBoasVindas").value;
+            let analista = document.getElementById("analistaBoasVindas").value;
+            let loja = document.getElementById("lojaBoasVindas").value;
+            let carro = document.getElementById("carroBoasVindas").value;
+
+            if (!celular || !nomeCliente || !analista || !loja || !carro) {
+                alert("Preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            let mensagem = `Olá, ${nomeCliente}. Como vai?\n\n*PARABÉNS PELO FINANCIAMENTO DO SEU VEÍCULO!!!*\n\n*ESTAMOS MUITO FELIZES COM A SUA CONQUISTA!*\n\nMe chamo ${analista}, sou do *Itaú Veículos* e faço os financiamentos da loja *${loja}*. Quero te parabenizar pela compra do seu *${carro}*.\n\nPara acessar o *carnê digital completo* do seu financiamento, você pode acessar através do link: veiculos.itau.com.br/login\n\nVocê também pode acessar os dados do seu financiamento através dos canais:\n\n*(11) 4004-4828* para capital\n*0800 7970 4828* para demais localidades\n\nPor WhatsApp, você pode entrar em contato por esse link: wa.me/+551140044828\n\nSe você for um cliente correntista do Itaú, o acesso pode ser feito pelo próprio app do Itaú.\n\nQualquer dúvida, você pode me chamar por aqui também. *Estou por aqui para te ajudar!*`;
+
+            let url = `https://wa.me/55${celular}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        }
+
         function limparCampos(tipo) {
             document.getElementById(`celular${tipo}`).value = "";
-            document.getElementById(`nome${tipo}`).value = "";
             if (tipo === 1) {
+                document.getElementById("nome1").value = "";
                 document.getElementById("parcela1").value = "";
                 document.getElementById("placa1").value = "";
                 document.getElementById("analista1").value = "";
+            } else if (tipo === 2) {
+                document.getElementById("nome2").value = "";
+            } else if (tipo === 3) {
+                document.getElementById("nomeLojista").value = "";
+                document.getElementById("diasAtraso").value = "";
+                document.getElementById("numeroProposta").value = "";
             }
+        }
+
+        function limparCamposBoasVindas() {
+            document.getElementById("celularBoasVindas").value = "";
+            document.getElementById("nomeClienteBoasVindas").value = "";
+            document.getElementById("analistaBoasVindas").value = "";
+            document.getElementById("lojaBoasVindas").value = "";
+            document.getElementById("carroBoasVindas").value = "";
         }
     </script>
 
