@@ -228,7 +228,7 @@
             
             <div class="input-container">
                 <label>Nome do Lojista</label>
-                <input type="text" id="nomeLojista" placeholder="Ex: Loja ABC">
+                <input type="text" id="nomeLojista" placeholder="Ex: João Pedro">
             </div>
 
             <div class="input-container">
@@ -277,7 +277,7 @@
                 let nomeLojista = document.getElementById("nomeLojista").value;
                 let diasAtraso = document.getElementById("diasAtraso").value;
                 let numeroProposta = document.getElementById("numeroProposta").value;
-                mensagem = `Olá, ${nomeLojista}! Como vai?\n\nVocê não vai acreditar. Estamos com um contrato a *${diasAtraso}* dias em atraso da sua loja.\n\nTer *clientes inadimplentes* que financiaram um veículo em sua loja pode *impactar a classificação da sua loja* e até mesmo *reduzir o crédito*. E não queremos que isso aconteça porque temos uma parceria muito incrível!\n\nA proposta do cliente inadimplente é *${numeroProposta}*.\n\n*Vamos juntos recuperar esse cliente?*\n\nConto com você.`;
+                mensagem = `Olá, ${nomeLojista}! Como vai?\n\nVocê não vai acreditar. Estamos com um contrato a *${diasAtraso}* dias em atraso da sua loja.\n\nTer *clientes inadimplentes* que financiaram um veículo em sua loja pode *impactar a classificação da sua loja* e até mesmo *reduzir o crédito*. E não queremos que isso aconteça porque temos uma parceria muito incrível!\n\nA proposta do cliente inadimplente é *${numeroProposta}*.\n\n*Vamos juntos recuperar esse cliente?*\n\nConto com você!`;
             }
 
             if (!celular || (tipo === 1 && !document.getElementById("nome1").value) || (tipo === 2 && !document.getElementById("nome2").value) || (tipo === 3 && (!document.getElementById("nomeLojista").value || !document.getElementById("diasAtraso").value || !document.getElementById("numeroProposta").value))) {
